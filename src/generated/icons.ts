@@ -179,6 +179,10 @@ export const iconLoaders = {
   "canvas-slash": {
     16: () => import("./icons/canvas-slash-16.js"),
   },
+  "car": {
+    16: () => import("./icons/car-16.js"),
+    20: () => import("./icons/car-20.js"),
+  },
   "chat-history": {
     16: () => import("./icons/chat-history-16.js"),
   },
@@ -223,6 +227,9 @@ export const iconLoaders = {
   "close-circle-fill": {
     12: () => import("./icons/close-circle-fill-12.js"),
     16: () => import("./icons/close-circle-fill-16.js"),
+  },
+  "close-circle-fill-duotone": {
+    16: () => import("./icons/close-circle-fill-duotone-16.js"),
   },
   "closed-caption": {
     16: () => import("./icons/closed-caption-16.js"),
@@ -481,6 +488,9 @@ export const iconLoaders = {
   "golf": {
     32: () => import("./icons/golf-32.js"),
   },
+  "grid-add": {
+    16: () => import("./icons/grid-add-16.js"),
+  },
   "hammer": {
     12: () => import("./icons/hammer-12.js"),
     16: () => import("./icons/hammer-16.js"),
@@ -531,6 +541,10 @@ export const iconLoaders = {
   },
   "horizontal-scrolling": {
     16: () => import("./icons/horizontal-scrolling-16.js"),
+  },
+  "hotel": {
+    16: () => import("./icons/hotel-16.js"),
+    20: () => import("./icons/hotel-20.js"),
   },
   "identity": {
     16: () => import("./icons/identity-16.js"),
