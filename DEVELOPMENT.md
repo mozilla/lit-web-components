@@ -23,20 +23,20 @@ npm run dev        # Storybook at http://localhost:6006
 
 ## Scripts
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` / `npm run storybook` | Storybook dev server |
-| `npm run generate` | Compile tokens (`build:tokens`) and icons (`build:icons`) into `src/generated/` |
-| `npm run test` | Storybook-driven tests via Vitest (browser mode), watch |
-| `npm run test:browsers` | One-shot cross-browser run (Chromium + Firefox + WebKit) |
-| `npm run test:coverage` | Chromium-only run with v8 coverage + thresholds |
-| `npm run playwright:install` | Install the Playwright browsers (Chromium, Firefox, WebKit) matching the pinned version |
-| `npm run test:visual` | Compare visual snapshots locally (baselines are `-chromium-linux`, so pixels only match in the container — use `:docker`) |
-| `npm run test:visual:docker` | Compare against the committed baselines in the pinned Playwright container (the reliable local check) |
-| `npm run test:visual:update:docker` | Regenerate the committed baselines in the pinned Playwright container |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run build` | Full library build into `dist/` (clean, lib, react, types, assets, manifest) |
-| `npm run build-storybook` | Static Storybook build |
+| Script                              | What it does                                                                                                              |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev` / `npm run storybook` | Storybook dev server                                                                                                      |
+| `npm run generate`                  | Compile tokens (`build:tokens`) and icons (`build:icons`) into `src/generated/`                                           |
+| `npm run test`                      | Storybook-driven tests via Vitest (browser mode), watch                                                                   |
+| `npm run test:browsers`             | One-shot cross-browser run (Chromium + Firefox + WebKit)                                                                  |
+| `npm run test:coverage`             | Chromium-only run with v8 coverage + thresholds                                                                           |
+| `npm run playwright:install`        | Install the Playwright browsers (Chromium, Firefox, WebKit) matching the pinned version                                   |
+| `npm run test:visual`               | Compare visual snapshots locally (baselines are `-chromium-linux`, so pixels only match in the container — use `:docker`) |
+| `npm run test:visual:docker`        | Compare against the committed baselines in the pinned Playwright container (the reliable local check)                     |
+| `npm run test:visual:update:docker` | Regenerate the committed baselines in the pinned Playwright container                                                     |
+| `npm run typecheck`                 | `tsc --noEmit`                                                                                                            |
+| `npm run build`                     | Full library build into `dist/` (clean, lib, react, types, assets, manifest)                                              |
+| `npm run build-storybook`           | Static Storybook build                                                                                                    |
 
 ## Project structure
 

@@ -12,7 +12,7 @@ name: Icons sync
 
 on:
   schedule:
-    - cron: '37 5 * * 1'
+    - cron: "37 5 * * 1"
   workflow_dispatch:
 
 concurrency:

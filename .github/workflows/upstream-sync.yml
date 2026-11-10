@@ -17,7 +17,7 @@ name: Upstream sync
 
 on:
   schedule:
-    - cron: '17 4 * * *'
+    - cron: "17 4 * * *"
   workflow_dispatch:
   # Let a maintainer re-trigger from the PR itself by commenting `/sync`.
   issue_comment:
