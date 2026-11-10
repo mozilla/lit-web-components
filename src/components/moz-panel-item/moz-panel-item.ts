@@ -136,6 +136,7 @@ export class MozPanelItem extends MozLitElement {
 
   /** Whether this row has anything of its own to put in the gutter. */
   get needsGutter(): boolean {
+    console.log(this.iconStart);
     return !!this.iconStart || this.type === 'checkbox' || this.badged;
   }
 
@@ -262,17 +263,20 @@ export class MozPanelItem extends MozLitElement {
         <moz-checkbox-visual ?checked=${this.checked}></moz-checkbox-visual>
       </span>`;
     }
-    return html`<span class="gutter" part="gutter">
-      ${
-        this.iconStart
-          ? html`<moz-icon
-            name=${this.iconStart}
-            size=${this.size === 'large' ? 'large' : 'small'}
-          ></moz-icon>`
-          : nothing
-      }
-      ${this.badged ? html`<span class="badged"></span>` : nothing}
-    </span>`;
+    if (this.iconStart) {
+      return html`<span class="gutter" part="gutter">
+        ${
+          this.iconStart
+            ? html`<moz-icon
+              name=${this.iconStart}
+              size=${this.size === 'large' ? 'large' : 'small'}
+            ></moz-icon>`
+            : nothing
+        }
+        ${this.badged ? html`<span class="badged"></span>` : nothing}
+      </span>`;
+    }
+    return nothing;
   }
 
   /**
