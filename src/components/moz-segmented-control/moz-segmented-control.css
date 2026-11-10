@@ -81,7 +81,7 @@
  * list instead of a ragged grid. Icon-only segments keep flowing — a row of
  * circles is already narrow. */
 :host(moz-segmented-control[data-stacked])
-::slotted(moz-segmented-control-item:not([icon-only])) {
+  ::slotted(moz-segmented-control-item:not([icon-only])) {
   flex-basis: 100%;
 }
 

@@ -78,7 +78,9 @@ import '@mozilla/lit-web-components/foundation.css';
 export function App() {
   return (
     <MozProvider theme="auto">
-      <MozButton variant="primary" onClick={save}>Save</MozButton>
+      <MozButton variant="primary" onClick={save}>
+        Save
+      </MozButton>
     </MozProvider>
   );
 }
@@ -96,6 +98,7 @@ import { tokens, type TokenName } from '@mozilla/lit-web-components/tokens';
 Component-specific tokens (`--button-*`, and so on) are scoped to each component's shadow root, so they don't leak into the global surface by default.
 
 ### all-tokens.css
+
 If, for example, you have an exisiting app in a previous design system, and want to attempt a blanket update without consuming these components. `all-tokens.css` re-exports the full set of tokens — foundation plus every component's tokens — on `:root`:
 
 ```js
@@ -106,17 +109,17 @@ It's larger than `tokens.css` and everything sits in the `@layer acorn.tokens` c
 
 ## Package exports
 
-| Entry | Contents |
-| --- | --- |
-| `@mozilla/lit-web-components` | All components + tokens/option maps + types |
-| `@mozilla/lit-web-components/components/<name>` | A single component (e.g. `moz-button`) |
-| `@mozilla/lit-web-components/foundation.css` | Tokens + base defaults (one import) |
-| `@mozilla/lit-web-components/tokens.css` | Foundation tokens as CSS custom properties |
-| `@mozilla/lit-web-components/all-tokens.css` | Every token (foundation + all component tokens) on `:root` (opt-in; larger than `tokens.css`) |
-| `@mozilla/lit-web-components/base.css` | Document defaults (font family/size, color-scheme) |
-| `@mozilla/lit-web-components/tokens/<name>.css` | Raw per-component `:host` token CSS (advanced; components already bundle these) |
-| `@mozilla/lit-web-components/tokens` | Typed token map + `TokenName` |
-| `@mozilla/lit-web-components/react` | Typed React wrappers |
+| Entry                                           | Contents                                                                                      |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `@mozilla/lit-web-components`                   | All components + tokens/option maps + types                                                   |
+| `@mozilla/lit-web-components/components/<name>` | A single component (e.g. `moz-button`)                                                        |
+| `@mozilla/lit-web-components/foundation.css`    | Tokens + base defaults (one import)                                                           |
+| `@mozilla/lit-web-components/tokens.css`        | Foundation tokens as CSS custom properties                                                    |
+| `@mozilla/lit-web-components/all-tokens.css`    | Every token (foundation + all component tokens) on `:root` (opt-in; larger than `tokens.css`) |
+| `@mozilla/lit-web-components/base.css`          | Document defaults (font family/size, color-scheme)                                            |
+| `@mozilla/lit-web-components/tokens/<name>.css` | Raw per-component `:host` token CSS (advanced; components already bundle these)               |
+| `@mozilla/lit-web-components/tokens`            | Typed token map + `TokenName`                                                                 |
+| `@mozilla/lit-web-components/react`             | Typed React wrappers                                                                          |
 
 A [Custom Elements Manifest](https://github.com/webcomponents/custom-elements-manifest) (`custom-elements.json`) ships for editor autocomplete and tooling.
 
