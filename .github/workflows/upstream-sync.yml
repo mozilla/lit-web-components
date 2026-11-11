@@ -153,9 +153,11 @@ jobs:
           if [ -z "$(gh pr list --head chore/upstream-sync --state open --json number --jq '.[].number')" ]; then
             gh pr create --head chore/upstream-sync \
               --title "chore: sync design tokens from Firefox" \
-              --body "$BODY"
+              --body "$BODY" \
+              --label tokens/vendor
           else
             echo "PR already open for chore/upstream-sync; pushed the update."
+            gh pr edit chore/upstream-sync --add-label tokens/vendor
           fi
 
       # TODO: detecting drift in Firefox's hand-authored moz-* COMPONENT source

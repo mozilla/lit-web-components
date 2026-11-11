@@ -1,0 +1,66 @@
+# Categories for GitHub's auto-generated release notes.
+#
+# Matching is by label only — there is no title selector — so these labels get
+# applied from the title's Conventional Commits type by pr-label.yml.
+#
+# A PR lands in the first category it matches: security sits above dependencies
+# so a Dependabot PR closing an advisory reads as a fix, not as upkeep.
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - duplicate
+      - invalid
+      - wontfix
+  categories:
+    - title: ⚠️ Breaking changes
+      labels:
+        - breaking-change
+
+    - title: 🔒 Security
+      labels:
+        - security
+
+    - title: 🧩 New components
+      labels:
+        - new-component
+
+    - title: ✨ Features
+      labels:
+        - enhancement
+
+    - title: 🐛 Bug fixes
+      labels:
+        - bug
+
+    - title: ♿ Accessibility
+      labels:
+        - a11y
+
+    # The icons-sync and upstream-sync workflows label their PRs with this, so
+    # a vendored-asset bump reads as a visual change rather than as upkeep —
+    # it can move pixels and break a consumer's snapshots without touching an API.
+    - title: 🎨 Tokens & vendored assets
+      labels:
+        - tokens/vendor
+
+    - title: 📖 Documentation
+      labels:
+        - documentation
+
+    - title: 🏗️ Maintenance
+      labels:
+        - maintenance
+
+    # Near-last: daily Dependabot is most of the PR volume and would otherwise
+    # bury the real work.
+    - title: ⬆️ Dependency updates
+      labels:
+        - dependencies
+        - github_actions
+
+    # `*` is the only catch-all GitHub offers; there is no "has no label"
+    # selector, so this also picks up PRs whose only labels aren't named above.
+    - title: 🏷️ Uncategorized
+      labels:
+        - "*"

@@ -96,7 +96,9 @@ jobs:
           if [ -z "$(gh pr list --head chore/icons-sync --state open --json number --jq '.[].number')" ]; then
             gh pr create --head chore/icons-sync \
               --title "chore: sync icons from acorn-icons ${LATEST}" \
-              --body "$BODY"
+              --body "$BODY" \
+              --label tokens/vendor
           else
             echo "PR already open for chore/icons-sync; pushed the update."
+            gh pr edit chore/icons-sync --add-label tokens/vendor
           fi
