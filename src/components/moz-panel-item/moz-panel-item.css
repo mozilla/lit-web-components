@@ -33,7 +33,7 @@
   text-align: start;
   text-decoration: none;
   background-color: var(--button-background-color-menu);
-  cursor: default;
+  cursor: pointer;
 }
 
 :host([size="large"]) .item {
@@ -63,6 +63,7 @@ a.item:active {
   color: var(--button-text-color-menu-disabled);
   background-color: var(--button-background-color-menu-disabled);
   opacity: var(--button-opacity-disabled);
+  cursor: not-allowed;
 }
 
 /* Reserved by the list for every row as soon as one of them has something to
@@ -162,7 +163,7 @@ a.item:active {
   border-radius: var(--border-radius-circle);
   color: inherit;
   background-color: var(--toolbarbutton-background-color);
-  cursor: default;
+  cursor: pointer;
 }
 
 .action:enabled:hover {
@@ -181,4 +182,5 @@ a.item:active {
 .action:disabled {
   background-color: var(--toolbarbutton-background-color-disabled);
   opacity: var(--toolbarbutton-opacity-disabled);
+  cursor: not-allowed;
 }
