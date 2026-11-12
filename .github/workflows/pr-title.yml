@@ -1,0 +1,100 @@
+# Merges squash onto the PR title, so the title becomes the commit message and
+# the changelog line.
+#
+# Not a job in ci.yml: it has to re-run on `edited`, and ci.yml's concurrency
+# group would cancel in-progress Playwright runs on every title tweak.
+#
+# Inline rather than amannn/action-semantic-pull-request, whose requireScope is
+# all-or-nothing and can't express "required for feat/fix only".
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: src/components
+          sparse-checkout-cone-mode: true
+      - name: Check the title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          AUTHOR_TYPE: ${{ github.event.pull_request.user.type }}
+        run: |
+          set -euo pipefail
+
+          if [ "$AUTHOR_TYPE" = "Bot" ]; then
+            echo "Bot PR; title is generated, not reviewed."
+            exit 0
+          fi
+
+          types="feat fix docs chore ci refactor test perf build style revert"
+          extra_scopes="tokens react deps deps-dev icons illustrations storybook docs a11y build ci release tests"
+          components=$(find src/components -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
+          valid_scopes=$(printf '%s\n%s\n' "$components" "$(printf '%s\n' $extra_scopes)" | sort -u)
+
+          fail() {
+            {
+              echo "### ❌ PR title"
+              echo
+              echo "\`$TITLE\`"
+              echo
+              echo "$1"
+              echo
+              echo "<details><summary>Valid scopes</summary>"
+              echo
+              printf '%s\n' "$valid_scopes" | sed 's/^/- /'
+              echo
+              echo "</details>"
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::$1"
+            exit 1
+          }
+
+          if ! printf '%s' "$TITLE" | grep -qE '^[a-z]+(\([a-z0-9,._/-]+\))?!?: .+'; then
+            fail "Must be \`type(scope): subject\`, e.g. \`feat(moz-button): add ghost variant\`. Types: $types."
+          fi
+
+          type=${TITLE%%[(:!]*}
+          case " $types " in
+            *" $type "*) ;;
+            *) fail "\`$type\` isn't a known type. Use one of: $types." ;;
+          esac
+
+          rest=${TITLE#"$type"}
+          scope=""
+          case "$rest" in
+            "("*) scope=${rest#(}; scope=${scope%%)*} ;;
+          esac
+
+          if [ -z "$scope" ]; then
+            case "$type" in
+              feat|fix) fail "\`$type\` needs a scope naming what changed, e.g. \`$type(moz-button): …\`." ;;
+            esac
+          fi
+
+          if [ -n "$scope" ]; then
+            IFS=',' read -ra parts <<< "$scope"
+            for part in "${parts[@]}"; do
+              if ! printf '%s\n' "$valid_scopes" | grep -qx "$part"; then
+                fail "\`$part\` isn't a component directory or a known area. Add it to \`extra_scopes\` here if it should be."
+              fi
+            done
+          fi
+
+          if [ "${#TITLE}" -gt 72 ]; then
+            echo "::warning::Title is ${#TITLE} chars; git subject lines read best under 72."
+          fi
+
+          echo "✅ $TITLE"

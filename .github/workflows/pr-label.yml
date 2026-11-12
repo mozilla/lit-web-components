@@ -1,0 +1,83 @@
+# Applies a label from the PR title's Conventional Commits type, because
+# .github/release.yml can only categorise by label.
+name: Label PRs from title
+
+# pull_request_target, so PRs from forks get a token that can label. Nothing
+# from the PR branch is checked out or executed.
+on:
+  pull_request_target:
+    types: [opened, reopened, edited]
+
+permissions: {}
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Apply the label for the title's type
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          TITLE: ${{ github.event.pull_request.title }}
+          # Empty unless this event is a title edit.
+          OLD_TITLE: ${{ github.event.changes.title.from }}
+          AUTHOR_TYPE: ${{ github.event.pull_request.user.type }}
+        run: |
+          set -euo pipefail
+
+          # Dependabot titles everything `chore(deps):`, which would file
+          # upgrades under Maintenance; its `dependencies` label is correct.
+          if [ "$AUTHOR_TYPE" = "Bot" ]; then
+            echo "Bot PR; leaving labels alone."
+            exit 0
+          fi
+
+          label_for() {
+            case "${1%%[(:!]*}" in
+              feat) echo enhancement ;;
+              fix)  echo bug ;;
+              docs) echo documentation ;;
+              chore|ci|refactor|test|perf|build|style) echo maintenance ;;
+            esac
+          }
+          breaking_for() {
+            case "$1" in
+              *"!:"*) echo yes ;;
+              *)      echo no ;;
+            esac
+          }
+
+          label=$(label_for "$TITLE")
+          breaking=$(breaking_for "$TITLE")
+
+          current=$(gh pr view "$PR" --repo "$REPO" --json labels --jq '.labels[].name')
+          drop() {
+            if printf '%s\n' "$current" | grep -qx "$1"; then
+              gh pr edit "$PR" --repo "$REPO" --remove-label "$1"
+            fi
+          }
+
+          # Only what the previous title implied is this workflow's to remove.
+          # Every other label was put there deliberately — including a second
+          # managed one, and including `breaking-change` on an unmarked title.
+          if [ -n "$OLD_TITLE" ]; then
+            old_label=$(label_for "$OLD_TITLE")
+            if [ -n "$old_label" ] && [ "$old_label" != "$label" ]; then
+              drop "$old_label"
+            fi
+            if [ "$(breaking_for "$OLD_TITLE")" = yes ] && [ "$breaking" = no ]; then
+              drop breaking-change
+            fi
+          fi
+
+          if [ "$breaking" = yes ]; then
+            gh pr edit "$PR" --repo "$REPO" --add-label breaking-change
+          fi
+          if [ -n "$label" ]; then
+            gh pr edit "$PR" --repo "$REPO" --add-label "$label"
+          else
+            echo "::warning::'$TITLE' has no Conventional Commits type; it will land in Uncategorized."
+          fi
