@@ -34,7 +34,9 @@ export default defineConfig({
     transformer: 'lightningcss',
     lightningcss: {
       targets: browserslistToTargets(
-        browserslist('>0.25%, not dead, not op_mini all'),
+        browserslist(
+          '>0.25% and not dead, not op_mini all, firefox esr, firefox 115',
+        ),
       ),
       exclude: Features.LightDark,
     },
