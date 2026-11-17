@@ -803,6 +803,9 @@ export const iconLoaders = {
   "payment-methods": {
     16: () => import("./icons/payment-methods-16.js"),
   },
+  "pdf-duotone": {
+    16: () => import("./icons/pdf-duotone-16.js"),
+  },
   "permission": {
     16: () => import("./icons/permission-16.js"),
     20: () => import("./icons/permission-20.js"),
@@ -895,6 +898,9 @@ export const iconLoaders = {
   },
   "remove-user": {
     16: () => import("./icons/remove-user-16.js"),
+  },
+  "report": {
+    16: () => import("./icons/report-16.js"),
   },
   "restore": {
     16: () => import("./icons/restore-16.js"),
