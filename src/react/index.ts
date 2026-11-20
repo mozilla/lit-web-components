@@ -35,6 +35,7 @@ import {
   MozPageNavButton as MozPageNavButtonElement,
   MozPageNav as MozPageNavElement,
 } from '../components/moz-page-nav/moz-page-nav';
+import { MozPagination as MozPaginationElement } from '../components/moz-pagination/moz-pagination';
 import {
   MozPanelItem as MozPanelItemElement,
   MozPanelRow as MozPanelRowElement,
@@ -310,6 +311,15 @@ export const MozPageNavButton = createComponent({
   tagName: 'moz-page-nav-button',
   elementClass: MozPageNavButtonElement,
   react: React,
+});
+
+export const MozPagination = createComponent({
+  tagName: 'moz-pagination',
+  elementClass: MozPaginationElement,
+  react: React,
+  events: {
+    onSelect: 'moz-pagination:select',
+  },
 });
 
 export const MozProvider = createComponent({

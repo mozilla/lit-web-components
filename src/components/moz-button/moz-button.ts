@@ -15,6 +15,13 @@ export type ButtonVariant =
   | 'ghost'
   | 'muted';
 export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonCurrent =
+  | 'page'
+  | 'step'
+  | 'location'
+  | 'date'
+  | 'time'
+  | 'true';
 
 /**
  * The slice of `<moz-panel-list>` a trigger needs. Structural rather than an
@@ -42,6 +49,10 @@ interface MenuTarget extends HTMLElement {
  * `menu-id` makes it the trigger for a `<moz-panel-list>`: clicking toggles
  * that list anchored to this button, and the button carries the matching
  * `aria-haspopup` / `aria-expanded` on the real control in its shadow tree.
+ *
+ * `current` does the same for `aria-current`, so a button standing in for the
+ * current page or step can say so as state rather than folding it into its
+ * accessible name.
  *
  * @slot - button label.
  * @csspart button - the `<button>` (or `<a>` in link mode).
@@ -103,6 +114,13 @@ export class MozButton extends MozLitElement {
 
   /** Link `rel` (link mode only); defaults to `noopener` when `target="_blank"`. */
   @property() rel?: string;
+
+  /**
+   * Marks this as the current item in a set — the current page of a
+   * pagination control, the current step of a flow. Forwarded as
+   * `aria-current` to the real control, since the host isn't the control.
+   */
+  @property() current?: ButtonCurrent;
 
   /** `id` of a `<moz-panel-list>` this button opens as its menu. */
   @property({ attribute: 'menu-id' }) menuId?: string;
@@ -188,6 +206,7 @@ export class MozButton extends MozLitElement {
           href=${this.href}
           target=${ifDefined(this.target)}
           rel=${ifDefined(rel)}
+          aria-current=${ifDefined(this.current)}
         >
           ${this.#content()}
         </a>
@@ -198,6 +217,7 @@ export class MozButton extends MozLitElement {
         part="button"
         type=${this.type}
         ?disabled=${this.disabled}
+        aria-current=${ifDefined(this.current)}
         aria-haspopup=${ifDefined(this.menuId ? 'menu' : undefined)}
         aria-expanded=${ifDefined(this.menuId ? String(this.menuOpen) : undefined)}
         @click=${this.#handleClick}

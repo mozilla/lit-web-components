@@ -264,3 +264,40 @@ export const LinkRenders: Story = {
     expect(disabled.shadowRoot!.querySelector('button')?.disabled).toBe(true);
   },
 };
+
+// `current` lands on the real control in both modes — the link one matters,
+// since the current page of a pagination control is a link.
+export const CurrentForwardsAriaCurrent: Story = {
+  tags: ['!dev', '!autodocs'],
+  render: () => html`
+    <moz-button id="as-link" href="/page/2" current="page">2</moz-button>
+    <moz-button id="as-button" current="step">2</moz-button>
+    <moz-button id="plain">2</moz-button>
+  `,
+  play: async ({ canvasElement }) => {
+    const settle = async (id: string) => {
+      const el = canvasElement.querySelector<HTMLElement>(`#${id}`)!;
+      await (el as unknown as { updateComplete: Promise<unknown> })
+        .updateComplete;
+      return el;
+    };
+    const asLink = await settle('as-link');
+    const asButton = await settle('as-button');
+    const plain = await settle('plain');
+
+    expect(
+      asLink.shadowRoot!.querySelector('a')!.getAttribute('aria-current'),
+    ).toBe('page');
+    expect(
+      asButton
+        .shadowRoot!.querySelector('button')!
+        .getAttribute('aria-current'),
+    ).toBe('step');
+    // Unset stays absent rather than serializing to "undefined"/"false".
+    expect(
+      plain.shadowRoot!.querySelector('button')!.hasAttribute('aria-current'),
+    ).toBe(false);
+    // ARIA belongs on the control, not the host.
+    expect(asLink.hasAttribute('aria-current')).toBe(false);
+  },
+};

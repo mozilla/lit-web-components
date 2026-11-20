@@ -1,0 +1,51 @@
+:host(:not([hidden])) {
+  display: block;
+}
+
+ol {
+  display: flex;
+  flex-wrap: wrap;
+
+  /* The ellipsis is short, so sitting it on the steps' baseline rather than
+   * their middle keeps it reading as part of the run of numbers. */
+  align-items: flex-end;
+  gap: var(--space-small);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Steps keep their intrinsic width rather than squeezing, so a cramped row
+ * wraps instead of crushing the targets — and so measuring a wrapped row still
+ * reports what one unwrapped row would need. */
+li {
+  flex-shrink: 0;
+}
+
+/* Previous and Next stand a notch further off the numbers than the numbers do
+ * from each other, so the three groups read separately. */
+li.end:first-child {
+  margin-inline-end: calc(var(--space-xlarge) - var(--space-small));
+}
+
+li.end:last-child {
+  margin-inline-start: calc(var(--space-xlarge) - var(--space-small));
+}
+
+/* Set by the control when the full row won't fit. The extra breathing room
+ * around Previous / Next is the first thing to go: with the labels down to
+ * chevrons there are no word shapes left for it to separate. The tighter gap
+ * is what buys the last ~30px, enough to hold one row at 320px. */
+:host([data-compact]) ol {
+  gap: var(--space-xsmall);
+}
+
+:host([data-compact]) li.end:first-child,
+:host([data-compact]) li.end:last-child {
+  margin-inline: 0;
+}
+
+li.skip {
+  display: inline-flex;
+  align-items: center;
+}
