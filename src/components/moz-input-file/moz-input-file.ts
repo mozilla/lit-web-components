@@ -143,7 +143,7 @@ export class MozInputFile extends MozBaseInputElement {
     return new Set(
       this.accept
         .split(',')
-        .map((entry) => entry.trim())
+        .map((entry) => entry.trim().toLowerCase())
         .filter((entry) => entry && !entry.startsWith('.')),
     );
   }
@@ -157,12 +157,25 @@ export class MozInputFile extends MozBaseInputElement {
     );
   }
 
+  /** `image/*` covers every image type, as it does for the native input. */
+  #matchesType(type: string): boolean {
+    if (!type) return false;
+    return [...this.#acceptedTypes].some((accepted) =>
+      accepted.endsWith('/*')
+        ? type.startsWith(accepted.slice(0, -1))
+        : accepted === type,
+    );
+  }
+
   #matchesAccept(file: File): boolean {
     if (!this.accept) return true;
-    if (this.#acceptedTypes.has(file.type)) return true;
-    const dot = file.name.lastIndexOf('.');
-    if (dot === -1) return false;
-    return this.#acceptedExtensions.has(file.name.slice(dot).toLowerCase());
+    if (this.#matchesType(file.type.toLowerCase())) return true;
+    // Suffix match, as the platform does, so multi-part extensions such as
+    // `.tar.gz` match instead of being read as `.gz`.
+    const name = file.name.toLowerCase();
+    return [...this.#acceptedExtensions].some((extension) =>
+      name.endsWith(extension),
+    );
   }
 
   /**
@@ -176,7 +189,7 @@ export class MozInputFile extends MozBaseInputElement {
     const item = transfer.items[0];
     if (item?.kind !== 'file') return false;
     if (!item.type) return true;
-    if (this.#acceptedTypes.has(item.type)) return true;
+    if (this.#matchesType(item.type.toLowerCase())) return true;
     return this.#acceptedExtensions.size > 0;
   }
 
