@@ -26,7 +26,7 @@ const values = ['day', 'week', 'month'];
 const meta: Meta<Args> = {
   title: 'Components/SegmentedControl',
   component: 'moz-segmented-control',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-segmented-control:change')],
   argTypes: {
     value: { control: 'select', options: values },

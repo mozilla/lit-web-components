@@ -27,7 +27,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Visual Picker',
   component: 'moz-visual-picker',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change')],
   argTypes: {
     label: { control: 'text' },

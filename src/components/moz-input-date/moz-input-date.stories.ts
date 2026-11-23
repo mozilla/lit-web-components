@@ -31,7 +31,7 @@ const dateTypes: DateType[] = [
 const meta: Meta<Args> = {
   title: 'Components/Input Date',
   component: 'moz-input-date',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

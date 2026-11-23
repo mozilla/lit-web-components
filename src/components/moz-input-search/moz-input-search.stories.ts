@@ -18,7 +18,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Input Search',
   component: 'moz-input-search',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },

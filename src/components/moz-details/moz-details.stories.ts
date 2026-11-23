@@ -15,7 +15,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Details',
   component: 'moz-details',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-details:toggle')],
   argTypes: {
     heading: { control: 'text' },

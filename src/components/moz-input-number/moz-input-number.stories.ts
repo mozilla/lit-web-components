@@ -24,7 +24,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Input Number',
   component: 'moz-input-number',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

@@ -8,7 +8,7 @@ import type { BreadcrumbSelectDetail } from './moz-breadcrumb';
 const meta: Meta = {
   title: 'Components/Breadcrumb',
   component: 'moz-breadcrumb-group',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-breadcrumb:select')],
   render: () => html`
     <moz-breadcrumb-group label="Breadcrumb">

@@ -28,7 +28,7 @@ const surface = (rows: unknown) =>
 const meta: Meta<Args> = {
   title: 'Components/PanelItem',
   component: 'moz-panel-item',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     size: { control: 'inline-radio', options: ['default', 'large'] },

@@ -36,7 +36,7 @@ const coverImage =
 const meta: Meta<Args> = {
   title: 'Components/Card',
   component: 'moz-card',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-card:toggle')],
   argTypes: {
     heading: { control: 'text' },

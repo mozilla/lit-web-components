@@ -19,7 +19,7 @@ interface IllustrationArgs {
 const meta: Meta<IllustrationArgs> = {
   title: 'Components/Illustration',
   component: 'moz-illustration',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     name: { control: 'select', options: illustrationNames },
     label: { control: 'text' },

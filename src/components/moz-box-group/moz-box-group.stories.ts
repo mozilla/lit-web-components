@@ -9,7 +9,7 @@ import './moz-box-group';
 const meta: Meta = {
   title: 'Components/Box/Group',
   component: 'moz-box-group',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   // Groups are typically page-width; constrain for the docs canvas.
   decorators: [(story) => html`<div style="max-width: 420px">${story()}</div>`],
 };

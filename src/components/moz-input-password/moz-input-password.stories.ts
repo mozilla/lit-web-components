@@ -24,7 +24,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Input Password',
   component: 'moz-input-password',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

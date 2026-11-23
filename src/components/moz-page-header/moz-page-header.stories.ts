@@ -22,7 +22,7 @@ const levels: PageHeaderLevel[] = [1, 2, 3, 4, 5, 6];
 const meta: Meta<Args> = {
   title: 'Components/PageHeader',
   component: 'moz-page-header',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-page-header:back')],
   argTypes: {
     heading: { control: 'text' },

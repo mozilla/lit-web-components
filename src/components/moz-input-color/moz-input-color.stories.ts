@@ -21,7 +21,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Input Color',
   component: 'moz-input-color',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

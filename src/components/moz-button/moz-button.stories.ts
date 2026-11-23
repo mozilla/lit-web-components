@@ -28,7 +28,7 @@ const sizes: ButtonSize[] = ['small', 'medium', 'large'];
 const meta: Meta<ButtonArgs> = {
   title: 'Components/Button',
   component: 'moz-button',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     variant: { control: 'select', options: variants },

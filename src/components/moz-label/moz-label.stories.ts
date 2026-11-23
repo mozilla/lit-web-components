@@ -17,7 +17,7 @@ interface LabelArgs {
 const meta: Meta<LabelArgs> = {
   title: 'Components/Label',
   component: 'moz-label',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     required: { control: 'boolean' },

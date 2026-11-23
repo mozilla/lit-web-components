@@ -10,7 +10,7 @@ import '../moz-provider/moz-provider';
 const meta: Meta = {
   title: 'Components/Checkbox/Select All',
   component: 'moz-checkbox-all',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change')],
   render: () => html`
     <moz-fieldset label="Sync your data">

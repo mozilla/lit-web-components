@@ -18,7 +18,7 @@ interface ChipArgs {
 const meta: Meta<ChipArgs> = {
   title: 'Components/Chip',
   component: 'moz-chip',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   // The dismiss button is always present; log its event in the Actions panel.
   decorators: [logEvents('moz-chip:remove')],
   argTypes: {

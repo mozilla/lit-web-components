@@ -109,6 +109,21 @@ High contrast is available two ways:
 - OS-driven, automatically, through the `@media (prefers-contrast: more)` and `@media (forced-colors: active)` layers (foundation `:root` and component `:host`).
 - App-driven, through `<moz-provider contrast="high">`. The provider sets a `data-contrast` attribute, and `MozLitElement` reflects it onto each component host so the component's own `:host([data-contrast='high'])` overrides apply. The app trigger uses the prefers-contrast set only. forced-colors stays `@media`-only, because its system colors are meant to be controlled by the OS.
 
+## Component status badges
+
+Each component's story `meta` carries a status tag, which `storybook-addon-tag-badges` renders as a badge above the canvas (`.storybook/manager.ts` maps tags to badges). The statuses mirror Firefox's Storybook (its `addon-component-status`) — the same three levels in the same place — so a component means the same thing in both:
+
+| Tag              | Badge          | Meaning                                                     |
+| ---------------- | -------------- | ----------------------------------------------------------- |
+| `stable`         | Stable         | Widely used, API settled.                                   |
+| `in-development` | In Development | Actively being built out; may not be usable everywhere yet. |
+| `unstable`       | Unstable       | Early stages, not ready for general use.                    |
+| `new`            | New            | Added in the current minor. Drop it at the next one.        |
+
+`new` also shows in the sidebar; the statuses don't, to keep the tree scannable. Badges are styled as `<moz-status-badge>` — the manager is React and can't mount the component, so `manager.ts` rebuilds its look from the same tokens and has to be kept in step with `moz-status-badge.css`.
+
+Tag the `meta`, not individual stories: a component entry's tags are the intersection of all its stories' tags, so a tag on one story never badges the component.
+
 ## Testing
 
 Tests are Storybook-driven: every story runs as a test in a real browser via Vitest's browser mode (Playwright). A story's `play` function is an interaction test, and `@storybook/addon-a11y` runs axe in the same pass, failing on violations. There is no separate component test suite.

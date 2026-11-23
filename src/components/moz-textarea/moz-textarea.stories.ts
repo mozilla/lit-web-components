@@ -29,7 +29,7 @@ const lorem =
 const meta: Meta<Args> = {
   title: 'Components/Input Textarea',
   component: 'moz-textarea',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

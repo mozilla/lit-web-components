@@ -17,7 +17,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/FiveStar',
   component: 'moz-five-star',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-five-star:change')],
   argTypes: {
     rating: { control: { type: 'number', min: 0, max: 5, step: 0.5 } },

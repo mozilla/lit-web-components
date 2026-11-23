@@ -24,7 +24,7 @@ const types: StatusBadgeType[] = [
 const meta: Meta<Args> = {
   title: 'Components/Status Badge',
   component: 'moz-status-badge',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     type: { control: 'select', options: types },
     label: { control: 'text' },

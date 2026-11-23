@@ -23,7 +23,7 @@ interface IconArgs {
 const meta: Meta<IconArgs> = {
   title: 'Components/Icon',
   component: 'moz-icon',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     name: { control: 'select', options: iconNames },
     size: { control: 'select', options: iconSizes },

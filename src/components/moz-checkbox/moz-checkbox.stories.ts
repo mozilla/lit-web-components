@@ -24,7 +24,7 @@ interface CheckboxArgs {
 const meta: Meta<CheckboxArgs> = {
   title: 'Components/Checkbox/Checkbox',
   component: 'moz-checkbox',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change')],
   argTypes: {
     label: { control: 'text' },
