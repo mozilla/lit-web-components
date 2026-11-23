@@ -329,6 +329,89 @@ export const RejectsWrongType: Story = {
   },
 };
 
+// `accept` extensions are suffixes, as the platform treats them, so a
+// multi-part extension isn't narrowed to its last segment (issue #221).
+export const AcceptsMultiPartExtension: Story = {
+  tags: ['!dev', '!autodocs'],
+  args: { accept: '.zip,.tar.gz', multiple: true },
+  play: async ({ canvasElement }) => {
+    const input = el(canvasElement);
+    await input.updateComplete;
+    const rejected: InputFileRejectedDetail[] = [];
+    input.addEventListener('moz-input-file:rejected', (event) =>
+      rejected.push((event as CustomEvent<InputFileRejectedDetail>).detail),
+    );
+
+    const inner = input.shadowRoot!.querySelector('input')!;
+    const transfer = transferFor([
+      file('source.tar.gz'),
+      file('source.zip'),
+      file('source.gz'),
+    ]);
+    if (!transfer) return;
+    inner.files = transfer.files;
+    inner.dispatchEvent(new Event('change', { bubbles: true }));
+    await input.updateComplete;
+
+    expect(input.files.map((f) => f.name)).toEqual([
+      'source.tar.gz',
+      'source.zip',
+    ]);
+    expect(rejected.map((detail) => detail.file.name)).toEqual(['source.gz']);
+  },
+};
+
+// A wildcard MIME entry covers its whole group, as it does natively.
+export const AcceptsWildcardType: Story = {
+  tags: ['!dev', '!autodocs'],
+  args: { accept: 'image/*,text/csv', multiple: true },
+  play: async ({ canvasElement }) => {
+    const input = el(canvasElement);
+    await input.updateComplete;
+    const rejected: InputFileRejectedDetail[] = [];
+    input.addEventListener('moz-input-file:rejected', (event) =>
+      rejected.push((event as CustomEvent<InputFileRejectedDetail>).detail),
+    );
+
+    const inner = input.shadowRoot!.querySelector('input')!;
+    const transfer = transferFor([
+      file('shot.png', 1024, 'image/png'),
+      file('rows.csv', 1024, 'text/csv'),
+      file('notes.txt', 1024, 'text/plain'),
+    ]);
+    if (!transfer) return;
+    inner.files = transfer.files;
+    inner.dispatchEvent(new Event('change', { bubbles: true }));
+    await input.updateComplete;
+
+    expect(input.files.map((f) => f.name)).toEqual(['shot.png', 'rows.csv']);
+    expect(rejected.map((detail) => detail.file.name)).toEqual(['notes.txt']);
+  },
+};
+
+// Only the type is readable during a drag, so a wildcard has to welcome it
+// there as well — otherwise the zone reads as forbidden for a file it keeps.
+export const WildcardTypeWelcomesDrag: Story = {
+  tags: ['!dev', '!autodocs'],
+  args: { accept: 'image/*' },
+  play: async ({ canvasElement }) => {
+    const input = el(canvasElement);
+    await input.updateComplete;
+    const transfer = transferFor([file('shot.png', 1024, 'image/png')]);
+    if (!transfer) return;
+    const target = zone(input);
+
+    drag(target, 'dragenter', transfer);
+    drag(target, 'dragover', transfer);
+    await input.updateComplete;
+    expect(target.classList.contains('accepted')).toBe(true);
+
+    drag(target, 'drop', transfer);
+    await input.updateComplete;
+    expect(input.files.map((f) => f.name)).toEqual(['shot.png']);
+  },
+};
+
 // max-size is ours to enforce; the platform has no equivalent.
 export const RejectsOversizeFile: Story = {
   tags: ['!dev', '!autodocs'],
