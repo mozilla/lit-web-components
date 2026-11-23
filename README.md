@@ -3,6 +3,7 @@
 ![CI](https://www.shieldcn.dev/github/ci/mozilla/lit-web-components.svg?variant=secondary&size=xs&font=jetbrains-mono)
 ![License](https://www.shieldcn.dev/github/license/mozilla/lit-web-components.svg?variant=outline&size=xs&font=jetbrains-mono)
 ---
+
 [![npm Version](https://www.shieldcn.dev/npm/@mozilla/lit-web-components.svg?variant=secondary&size=xs&font=jetbrains-mono&color=CB3837)](https://www.npmjs.com/package/@mozilla/lit-web-components)
 [![Docs · Storybook](https://www.shieldcn.dev/badge/Docs-Storybook-FF4785.svg?logo=storybook&variant=branded&size=xs&font=jetbrains-mono)](https://lit-web-components.quick.mozilla.cloud)
 ---
