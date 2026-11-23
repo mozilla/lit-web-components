@@ -1128,6 +1128,9 @@ export const iconLoaders = {
     12: () => import("./icons/tab-notes-12.js"),
     16: () => import("./icons/tab-notes-16.js"),
   },
+  "tabs-play": {
+    16: () => import("./icons/tabs-play-16.js"),
+  },
   "taskbar-add-tab": {
     16: () => import("./icons/taskbar-add-tab-16.js"),
   },
