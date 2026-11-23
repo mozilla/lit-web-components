@@ -1,5 +1,13 @@
 # lit-web-components
 
+![CI](https://www.shieldcn.dev/github/ci/mozilla/lit-web-components.svg?variant=secondary&size=xs&font=jetbrains-mono)
+![License](https://www.shieldcn.dev/github/license/mozilla/lit-web-components.svg?variant=outline&size=xs&font=jetbrains-mono)
+---
+
+[![npm Version](https://www.shieldcn.dev/npm/@mozilla/lit-web-components.svg?variant=secondary&size=xs&font=jetbrains-mono&color=CB3837)](https://www.npmjs.com/package/@mozilla/lit-web-components)
+[![Docs · Storybook](https://www.shieldcn.dev/badge/Docs-Storybook-FF4785.svg?logo=storybook&variant=branded&size=xs&font=jetbrains-mono)](https://lit-web-components.quick.mozilla.cloud)
+---
+
 Mozilla Nova-styled web components written in TypeScript with [Lit](https://lit.dev). The design tokens are compiled from Firefox's [Nova design system](https://searchfox.org/firefox-main/source/toolkit/themes/shared/design-system), and the icons and illustrations from [FirefoxUX/acorn-icons](https://github.com/FirefoxUX/acorn-icons), so the components match Firefox and can be kept up to date with it.
 
 > [!NOTE]
