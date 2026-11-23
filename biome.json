@@ -35,13 +35,24 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "style": { "noDescendingSpecificity": "off" }
+      "style": { "noDescendingSpecificity": "off" },
+      "suspicious": {
+        "noConsole": { "level": "error", "options": { "allow": ["warn"] } }
+      }
     }
   },
   "assist": {
     "actions": { "source": { "organizeImports": "on" } }
   },
   "overrides": [
+    {
+      "includes": ["scripts/**", "examples/**"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noConsole": "off" }
+        }
+      }
+    },
     {
       "includes": ["scripts/**"],
       "linter": {

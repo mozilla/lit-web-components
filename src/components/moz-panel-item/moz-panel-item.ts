@@ -136,7 +136,6 @@ export class MozPanelItem extends MozLitElement {
 
   /** Whether this row has anything of its own to put in the gutter. */
   get needsGutter(): boolean {
-    console.log(this.iconStart);
     return !!this.iconStart || this.type === 'checkbox' || this.badged;
   }
 
