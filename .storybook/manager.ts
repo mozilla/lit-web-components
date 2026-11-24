@@ -1,9 +1,9 @@
 import { addons } from 'storybook/manager-api';
 import { create } from 'storybook/theming';
-// The same illustration the landing page leads with, inlined because the
-// manager can't render <moz-illustration> (it's React, outside the preview).
 import picBlocks from '../src/generated/illustrations/pic-blocks';
 
+// The manager is React, outside the preview, so <moz-illustration> can't
+// render here — inline the illustration the landing page leads with instead.
 const mark = `data:image/svg+xml,${encodeURIComponent(picBlocks)}`;
 
 // setConfig takes a whole theme, so picking a base is unavoidable; read the OS

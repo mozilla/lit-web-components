@@ -80,8 +80,7 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        // Docs first (Welcome is the landing page), then the components, with
-        // the provider last — everything else is alphabetical within that.
+        // Storybook opens on the first entry, so Docs/Welcome leads.
         order: [
           'Docs',
           ['Welcome', 'Getting Started'],
