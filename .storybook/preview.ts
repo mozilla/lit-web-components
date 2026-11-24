@@ -80,6 +80,13 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
+        // Storybook opens on the first entry, so Docs/Welcome leads.
+        order: [
+          'Docs',
+          ['Welcome', 'Getting Started'],
+          'Components',
+          'Foundation',
+        ],
       },
     },
   },

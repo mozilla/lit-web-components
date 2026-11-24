@@ -1,0 +1,103 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import '../components/moz-badge/moz-badge';
+import '../components/moz-button/moz-button';
+import '../components/moz-chip/moz-chip';
+import '../components/moz-five-star/moz-five-star';
+import '../components/moz-illustration/moz-illustration';
+import '../components/moz-provider/moz-provider';
+import '../components/moz-toggle/moz-toggle';
+import {
+  card,
+  cards,
+  caption,
+  hero,
+  heroLede,
+  heroLinks,
+  heroText,
+  sampler,
+  samplerRow,
+} from './welcome.styles';
+
+<Meta title="Docs/Welcome" />
+
+{/* Docs pages render on a light canvas whatever the chrome theme is, so the
+    components are pinned to light; on `auto` they follow the OS, and a
+    dark-mode visitor gets dark components on a white page. */}
+
+<moz-provider theme="light">
+  <div style={hero}>
+    <moz-illustration name="pic-blocks" style={{ width: '140px' }}></moz-illustration>
+    <div style={heroText}>
+      <h1 style={{ margin: 0 }}>lit-web-components</h1>
+      <p style={heroLede}>
+        Mozilla Nova-styled web components, written in TypeScript with Lit. The
+        design tokens are compiled from Firefox's Nova design system and the
+        icons and illustrations from acorn-icons, so the components match
+        Firefox and can be kept up to date with it.
+      </p>
+      <div style={heroLinks}>
+        <moz-button variant="primary" target="_top" href="./?path=/docs/docs-getting-started--docs">Get started</moz-button>
+        <moz-button target="_top" href="https://github.com/mozilla/lit-web-components">GitHub</moz-button>
+        <moz-button target="_top" href="https://www.npmjs.com/package/@mozilla/lit-web-components">npm</moz-button>
+      </div>
+    </div>
+  </div>
+
+  <div style={sampler}>
+    <div style={samplerRow}>
+      <moz-button variant="primary" icon-start="edit">Edit</moz-button>
+      <moz-button>Cancel</moz-button>
+      <moz-badge>Recommended</moz-badge>
+      <moz-chip icon-start="extension">Extensions</moz-chip>
+      <moz-five-star rating="4.5"></moz-five-star>
+      <moz-toggle label="Sync" pressed></moz-toggle>
+    </div>
+  </div>
+</moz-provider>
+
+## What's inside
+
+<moz-provider theme="light">
+  <div style={cards}>
+    <a style={card} target="_top" href="./?path=/docs/components-button--docs">
+      <strong>Actions</strong>
+      <span>Buttons, chips, and anchored panel menus.</span>
+    </a>
+    <a style={card} target="_top" href="./?path=/docs/components-input-text--docs">
+      <strong>Forms</strong>
+      <span>Form-associated inputs, with labelling and validation built in.</span>
+    </a>
+    <a style={card} target="_top" href="./?path=/docs/components-card--docs">
+      <strong>Surfaces &amp; layout</strong>
+      <span>Cards, dialogs, details, and box groups.</span>
+    </a>
+    <a style={card} target="_top" href="./?path=/docs/components-pagenav--docs">
+      <strong>Navigation</strong>
+      <span>Page nav, breadcrumbs, segmented controls, pagination.</span>
+    </a>
+    <a style={card} target="_top" href="./?path=/docs/components-messagebar--docs">
+      <strong>Status &amp; feedback</strong>
+      <span>Message bars, badges, status dots, star ratings.</span>
+    </a>
+    <a style={card} target="_top" href="./?path=/docs/components-icon--docs">
+      <strong>Primitives</strong>
+      <span>The Nova icon and illustration sets, by name.</span>
+    </a>
+  </div>
+</moz-provider>
+
+## Install
+
+```sh
+npm install @mozilla/lit-web-components
+```
+
+```js
+import '@mozilla/lit-web-components/foundation.css';
+import '@mozilla/lit-web-components/components/moz-button';
+```
+
+These are standard custom elements, so they work in plain HTML and in any
+framework. Typed React wrappers ship alongside them — see{' '}
+<a target="_top" href="./?path=/docs/docs-getting-started--docs">Getting Started</a>{' '}
+for the full setup.
