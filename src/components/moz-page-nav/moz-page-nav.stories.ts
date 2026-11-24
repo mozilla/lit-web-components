@@ -24,7 +24,7 @@ const views: { value: string; label: string; icon: IconName }[] = [
 const meta: Meta<Args> = {
   title: 'Components/PageNav',
   component: 'moz-page-nav',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-page-nav:change')],
   argTypes: {
     heading: { control: 'text' },

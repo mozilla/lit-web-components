@@ -28,7 +28,7 @@ const variants: MessageBarVariant[] = ['default', 'stacked'];
 const meta: Meta<Args> = {
   title: 'Components/MessageBar',
   component: 'moz-message-bar',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [
     logEvents('moz-message-bar:dismiss', 'moz-message-bar:dismissed'),
   ],

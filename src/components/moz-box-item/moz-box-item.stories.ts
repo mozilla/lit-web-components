@@ -18,7 +18,7 @@ const icons: IconName[] = ['settings', 'information', 'help', 'shield'];
 const meta: Meta<Args> = {
   title: 'Components/Box/Item',
   component: 'moz-box-item',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     description: { control: 'text' },

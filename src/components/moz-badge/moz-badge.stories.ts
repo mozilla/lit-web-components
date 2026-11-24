@@ -17,7 +17,7 @@ const types: BadgeType[] = ['default', 'beta', 'new'];
 const meta: Meta<Args> = {
   title: 'Components/Badge',
   component: 'moz-badge',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     type: { control: 'select', options: types },
     label: { control: 'text' },

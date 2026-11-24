@@ -21,7 +21,7 @@ interface ToggleArgs {
 const meta: Meta<ToggleArgs> = {
   title: 'Components/Toggle',
   component: 'moz-toggle',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change')],
   argTypes: {
     label: { control: 'text' },

@@ -22,7 +22,7 @@ interface RadioArgs {
 const meta: Meta<RadioArgs> = {
   title: 'Components/Radio/Radio',
   component: 'moz-radio',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     value: { control: 'text' },

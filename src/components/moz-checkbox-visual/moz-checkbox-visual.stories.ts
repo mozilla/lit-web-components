@@ -14,7 +14,7 @@ interface VisualArgs {
 const meta: Meta<VisualArgs> = {
   title: 'Components/Checkbox/Visual',
   component: 'moz-checkbox-visual',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     checked: { control: 'boolean' },

@@ -31,7 +31,7 @@ const types: InputType[] = ['text', 'email', 'url', 'tel'];
 const meta: Meta<InputArgs> = {
   title: 'Components/Input Text',
   component: 'moz-input-text',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

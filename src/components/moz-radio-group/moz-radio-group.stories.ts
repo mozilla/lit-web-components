@@ -22,7 +22,7 @@ interface GroupArgs {
 const meta: Meta<GroupArgs> = {
   title: 'Components/Radio/Radio Group',
   component: 'moz-radio-group',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change')],
   argTypes: {
     label: { control: 'text' },

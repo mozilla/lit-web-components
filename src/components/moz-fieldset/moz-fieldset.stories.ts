@@ -17,7 +17,7 @@ interface FieldsetArgs {
 const meta: Meta<FieldsetArgs> = {
   title: 'Components/Fieldset',
   component: 'moz-fieldset',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     description: { control: 'text' },

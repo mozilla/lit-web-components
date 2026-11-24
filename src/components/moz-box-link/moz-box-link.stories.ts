@@ -15,7 +15,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/Box/Link',
   component: 'moz-box-link',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   argTypes: {
     label: { control: 'text' },
     description: { control: 'text' },

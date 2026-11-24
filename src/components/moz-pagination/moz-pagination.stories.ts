@@ -10,7 +10,7 @@ const href = (page: number) => `#page-${page}`;
 const meta: Meta = {
   title: 'Components/Pagination',
   component: 'moz-pagination',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable', 'new'],
   decorators: [logEvents('moz-pagination:select')],
   render: () =>
     html`<moz-pagination

@@ -26,7 +26,7 @@ const MB = 1024 * 1024;
 const meta: Meta<Args> = {
   title: 'Components/Input File',
   component: 'moz-input-file',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('change', 'moz-input-file:rejected')],
   argTypes: {
     label: { control: 'text' },

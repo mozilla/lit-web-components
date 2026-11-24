@@ -42,7 +42,7 @@ const licences = html`
 const meta: Meta<Args> = {
   title: 'Components/Input Select',
   component: 'moz-select',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('input', 'change')],
   argTypes: {
     label: { control: 'text' },

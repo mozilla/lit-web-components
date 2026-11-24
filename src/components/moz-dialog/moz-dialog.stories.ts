@@ -26,7 +26,7 @@ const openDialog = (e: Event) => {
 const meta: Meta<Args> = {
   title: 'Components/Dialog',
   component: 'moz-dialog',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-dialog:open', 'moz-dialog:dismiss')],
   argTypes: {
     variant: { control: 'select', options: variants },

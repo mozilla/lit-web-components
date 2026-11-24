@@ -16,7 +16,7 @@ interface Args {
 const meta: Meta<Args> = {
   title: 'Components/PanelList',
   component: 'moz-panel-list',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   decorators: [logEvents('moz-panel-list:shown', 'moz-panel-list:hidden')],
   argTypes: {
     label: { control: 'text' },
