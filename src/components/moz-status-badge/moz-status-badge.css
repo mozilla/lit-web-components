@@ -10,10 +10,10 @@
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xxsmall);
+  gap: var(--space-xsmall);
   inline-size: fit-content;
   min-block-size: 22px;
-  padding-inline: var(--space-xsmall);
+  padding-inline: var(--space-small);
 
   /* Faint inset ring on every type; --badge-border-color is the shared 40%
    * neutral. box-sizing keeps the height at 22px with the border included. */
@@ -30,9 +30,24 @@
   --icon-color: currentColor;
 }
 
-.icon {
+.icon,
+::slotted([slot="icon"]) {
   --icon-size: var(--icon-size-xsmall);
   flex-shrink: 0;
+}
+
+/* The large step: root-size text in a 32px pill, for a status that stands on
+ * its own rather than trailing a title. */
+:host([size="large"]) .badge {
+  gap: var(--space-small);
+  min-block-size: 32px;
+  padding-inline: var(--space-medium);
+  font-size: var(--font-size-root);
+}
+
+:host([size="large"]) .icon,
+:host([size="large"]) ::slotted([slot="icon"]) {
+  --icon-size: var(--icon-size-small);
 }
 
 :host([type="ghost"]) {
@@ -74,6 +89,12 @@
     var(--color-violet-20)
   );
   --status-badge-background-color: var(--background-color-information);
+}
+
+/* A status that's inert rather than good or bad (superseded, archived): the
+ * muted box surface, with the normal text color. */
+:host([type="neutral"]) {
+  --status-badge-background-color: var(--background-color-box-info);
 }
 
 /* Faint borders can drop under forced colors, so pin a visible one. */

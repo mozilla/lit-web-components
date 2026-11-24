@@ -7,8 +7,11 @@ import type { IconName } from '../../generated/icons';
 import type { StatusBadgeType } from '../moz-status-badge/moz-status-badge';
 import styles from './moz-status-dot.css';
 
+/** The badge types that carry a status color; `neutral` has no dot. */
+export type StatusDotType = Exclude<StatusBadgeType, 'neutral'>;
+
 // Each status's glyph, matching moz-message-bar.
-const typeIcon: Record<StatusBadgeType, IconName> = {
+const typeIcon: Record<StatusDotType, IconName> = {
   ghost: 'information-fill',
   default: 'information-fill',
   information: 'information-fill',
@@ -29,7 +32,7 @@ export class MozStatusDot extends MozLitElement {
   static styles = [shared, styles];
 
   /** Status color. */
-  @property({ reflect: true }) type: StatusBadgeType = 'information';
+  @property({ reflect: true }) type: StatusDotType = 'information';
 
   /** Show the type's icon inside the disc; omit for a solid dot. */
   @property({ type: Boolean, reflect: true }) icon = false;
