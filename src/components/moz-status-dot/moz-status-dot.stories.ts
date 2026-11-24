@@ -3,15 +3,15 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { expect } from 'storybook/test';
 import './moz-status-dot';
-import type { StatusBadgeType } from '../moz-status-badge/moz-status-badge';
+import type { StatusDotType } from './moz-status-dot';
 
 interface Args {
-  type: StatusBadgeType;
+  type: StatusDotType;
   icon: boolean;
   label?: string;
 }
 
-const types: StatusBadgeType[] = [
+const types: StatusDotType[] = [
   'information',
   'success',
   'warning',
