@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Getting Started" />
+
+# Getting Started
+
+## Install
+
+`@mozilla/lit-web-components` is a public scoped package, so no registry
+configuration or token is needed.
+
+```sh
+npm install @mozilla/lit-web-components
+```
+
+`lit` and `@lit/context` install with it. `react` and `react-dom` are optional
+peers, needed only for the `/react` entry.
+
+## Load the tokens, then the components
+
+`foundation.css` is the token layer plus the document defaults. Load it once at
+the app root; without it the components render unstyled.
+
+```js
+import '@mozilla/lit-web-components/foundation.css';
+
+// Components self-register on import.
+import '@mozilla/lit-web-components/components/moz-button';
+import '@mozilla/lit-web-components/components/moz-icon';
+```
+
+```html
+<moz-button variant="primary" icon-start="edit">Edit</moz-button>
+<moz-icon name="settings" size="large" label="Settings"></moz-icon>
+```
+
+Importing the package root registers every component; per-component subpaths
+pull in only what you use.
+
+## React
+
+Typed wrappers give the components an idiomatic React API — props and
+`onEvent` handlers instead of attributes and `addEventListener`.
+
+```jsx
+import { MozButton } from '@mozilla/lit-web-components/react';
+
+<MozButton variant="primary" onClick={save}>Save</MozButton>;
+```
+
+## Theming
+
+`color-scheme: light dark` is the document default, so the tokens follow the OS
+with no JavaScript. Wrap a subtree in `<moz-provider>` to pin it instead, or to
+supply locale and high-contrast state.
+
+```html
+<moz-provider theme="dark">…</moz-provider>
+```
+
+Every story on this site is wrapped in a provider driven by the **Scheme** and
+**Contrast** toolbar controls, so you can check either mode on any component.
+
+## Where things live
+
+- <a target="_top" href="./?path=/docs/docs-welcome--docs">Welcome</a> — what's in the library, by category.
+- <a target="_top" href="./?path=/docs/foundation-provider--docs">Foundation / Provider</a> — ambient theme, locale, and contrast.
+- [GitHub](https://github.com/mozilla/lit-web-components) — source, issues, and `DEVELOPMENT.md` for contributing.
