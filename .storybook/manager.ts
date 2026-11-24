@@ -1,4 +1,5 @@
 import { addons } from 'storybook/manager-api';
+import { create } from 'storybook/theming';
 import type {
   Badge,
   TagBadgeParameters,
@@ -6,6 +7,17 @@ import type {
 // :root custom properties for the manager chrome, which renders outside the
 // preview iframe and so inherits none of the preview's token CSS.
 import '../src/generated/all-tokens.css';
+import picBlocks from '../src/generated/illustrations/pic-blocks';
+
+// The manager is React, outside the preview, so <moz-illustration> can't
+// render here — inline the illustration the landing page leads with instead.
+const mark = `data:image/svg+xml,${encodeURIComponent(picBlocks)}`;
+
+// setConfig takes a whole theme, so picking a base is unavoidable; read the OS
+// preference so the chrome still lands where Storybook's own default would.
+const base = window.matchMedia('(prefers-color-scheme: dark)').matches
+  ? 'dark'
+  : 'light';
 
 type StatusType = 'success' | 'warning' | 'critical' | 'information';
 
@@ -66,6 +78,21 @@ const status = (
 });
 
 addons.setConfig({
+  theme: create({
+    base,
+    brandTitle: `
+      <img
+        src="${mark}"
+        alt=""
+        width="28"
+        height="28"
+        style="vertical-align: middle; margin-inline-end: 0.5rem"
+      />
+      <span style="vertical-align: middle">lit-web-components</span>
+    `,
+    brandUrl: 'https://github.com/mozilla/lit-web-components',
+    brandTarget: '_blank',
+  }),
   tagBadges: [
     {
       tags: 'new',
