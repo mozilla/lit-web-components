@@ -857,10 +857,16 @@
   --panel-separator-color: color-mix(in srgb, currentColor 25%, transparent);
   --panel-separator-padding-block: 4px;
   --panel-separator-padding-inline: 8px;
+  --panel-subview-motion-duration-enter: 185ms;
+  --panel-subview-motion-duration-exit: 130ms;
+  --panel-subview-motion-duration-fade-reduced: 120ms;
+  --panel-subview-motion-duration-parent-exit: 150ms;
   --panel-width: initial;
   --panel-box-shadow: 0 0 var(--panel-box-shadow-margin) hsla(0, 0%, 0%, 0.2);
   --panel-motion-easing: var(--motion-easing-emphasized);
   --panel-separator-padding: var(--panel-separator-padding-block) var(--panel-separator-padding-inline);
+  --panel-subview-motion-easing: var(--motion-easing-emphasized);
+  --panel-subview-motion-easing-fade: var(--motion-easing-standard);
   --panel-border-color: color-mix(in srgb, currentColor 24%, transparent);
   --panel-border-radius: 24px;
   --panel-text-color: var(--text-color);
